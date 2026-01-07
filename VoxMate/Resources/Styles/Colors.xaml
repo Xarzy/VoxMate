@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Paleta existente -->
+    <Color x:Key="Primary">#2D4F44</Color>
+    <Color x:Key="PrimaryLight">#587B6F</Color>
+    <Color x:Key="PrimaryDark">#1A332B</Color>
+    <Color x:Key="Accent">#D48C70</Color>
+    <Color x:Key="AccentDark">#A65D42</Color>
+    <Color x:Key="White">White</Color>
+
+    <Color x:Key="BackgroundLight">#F7F6F2</Color>
+    <Color x:Key="BackgroundDark">#181A1B</Color>
+    <Color x:Key="SurfaceLight">#FFFFFF</Color>
+    <Color x:Key="SurfaceDark">#242926</Color>
+    <Color x:Key="TextPrimaryLight">#1F2926</Color>
+    <Color x:Key="TextSecondaryLight">#6E7A75</Color>
+    <Color x:Key="TextPrimaryDark">#EDEFEA</Color>
+    <Color x:Key="TextSecondaryDark">#9BA6A1</Color>
+
+    <Color x:Key="Error">#B33A3A</Color>
+    <Color x:Key="Success">#4A7A5E</Color>
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundLight}"/>
+
+    <!--  Recursos usados por las páginas / ThemeService -->
+    <!-- Valores por defecto (tema claro). ThemeService los sobrescribirá según el tema. -->
+    <Color x:Key="PageBackgroundColor">#F0F6FF</Color>
+    <Color x:Key="CardBackground">#FFFFFF</Color>
+
+    <!-- Accent por defecto azul (restaurar aspecto previo) -->
+    <Color x:Key="AccentColor">#5B8CFF</Color>
+
+    <Color x:Key="SectionTitleColor">#6B7280</Color>
+    <Color x:Key="PrimaryTextColor">#0B1220</Color>
+    <Color x:Key="SecondaryTextColor">#1F2937</Color>
+    <Color x:Key="HistoryItemBackground">#F5F7FF</Color>
+
+    <SolidColorBrush x:Key="PageBackgroundBrush" Color="{StaticResource PageBackgroundColor}" />
+    <SolidColorBrush x:Key="CardBackgroundBrush" Color="{StaticResource CardBackground}" />
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="PrimaryTextBrush" Color="{StaticResource PrimaryTextColor}" />
+
+</ResourceDictionary>

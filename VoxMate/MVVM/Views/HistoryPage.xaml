@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VoxMate.MVVM.Views.HistoryPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <ContentPage.Resources>
+        <!-- Reutiliza recursos que ThemeService crea en tiempo de ejecución -->
+        <Style TargetType="Frame" x:Key="CardFrame">
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Padding" Value="12" />
+            <Setter Property="HasShadow" Value="True" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource CardBackground}" />
+        </Style>
+
+        <Style TargetType="Label" x:Key="SectionTitle">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid Padding="20" RowSpacing="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <HorizontalStackLayout Grid.Row="0" Spacing="12" VerticalOptions="Center">
+            <Button Text="← Volver" Clicked="OnBackClicked" BackgroundColor="Transparent" TextColor="{DynamicResource SectionTitleColor}" />
+            <Label Text="Historial completo" Style="{StaticResource SectionTitle}" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" />
+            <Button Text="🧹" Clicked="OnClearHistoryClicked" BackgroundColor="Transparent" TextColor="{DynamicResource SectionTitleColor}" />
+        </HorizontalStackLayout>
+
+        <!-- Content -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="12">
+                <Frame Style="{StaticResource CardFrame}">
+                    <CollectionView x:Name="FullHistoryView"
+                                    ItemsSource="{Binding History}"
+                                    SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Margin="6" Padding="10" CornerRadius="8" BackgroundColor="{DynamicResource HistoryItemBackground}">
+                                    <Label Text="{Binding}" LineBreakMode="WordWrap" TextColor="{DynamicResource PrimaryTextColor}" />
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

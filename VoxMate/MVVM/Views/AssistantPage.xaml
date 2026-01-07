@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VoxMate.MVVM.Views.AssistantPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <ContentPage.Resources>
+        <Style TargetType="Frame" x:Key="CardFrame">
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Padding" Value="12" />
+            <Setter Property="HasShadow" Value="True" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource CardBackground}" />
+        </Style>
+        <Style TargetType="Label" x:Key="SectionTitle">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextColor" Value="{DynamicResource SectionTitleColor}" />
+        </Style>
+        <Style TargetType="Label" x:Key="PrimaryText">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+        </Style>
+        <Style TargetType="Label" x:Key="SecondaryText">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColor}" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid Padding="20" RowSpacing="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />   <!-- header -->
+            <RowDefinition Height="2*" />     <!-- recognition (grow) -->
+            <RowDefinition Height="2*" />     <!-- assistant response (grow) -->
+            <RowDefinition Height="Auto" />   <!-- slider -->
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <HorizontalStackLayout Grid.Row="0" Spacing="8" VerticalOptions="Center">
+            <Label Text="🎙️ VoxMate" FontSize="22" FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" TextColor="{DynamicResource PrimaryTextColor}" />
+            <ActivityIndicator IsRunning="{Binding IsListening}" IsVisible="{Binding IsListening}"
+                               Color="{DynamicResource AccentColor}" WidthRequest="20" HeightRequest="20" />
+            <!-- Botón historial -->
+            <Button Text="📜" Clicked="OnOpenHistoryClicked" BackgroundColor="Transparent"
+                    HorizontalOptions="End" VerticalOptions="Center" FontSize="20"
+                    Margin="6,0,0,0" TextColor="{DynamicResource SectionTitleColor}" />
+        </HorizontalStackLayout>
+
+        <!-- Recognition -->
+        <Frame Grid.Row="1" Style="{StaticResource CardFrame}" HorizontalOptions="Fill" VerticalOptions="Fill">
+            <ScrollView>
+                <VerticalStackLayout>
+                    <Label Text="Escucha en directo" Style="{StaticResource SectionTitle}" />
+                    <Label Text="{Binding RecognitionText}" Style="{StaticResource PrimaryText}" LineBreakMode="WordWrap" VerticalOptions="CenterAndExpand" />
+                </VerticalStackLayout>
+            </ScrollView>
+        </Frame>
+
+        <!-- Assistant response -->
+        <Frame Grid.Row="2" Style="{StaticResource CardFrame}" HorizontalOptions="Fill" VerticalOptions="Fill">
+            <ScrollView>
+                <VerticalStackLayout>
+                    <Label Text="Respuesta" Style="{StaticResource SectionTitle}" />
+                    <Label Text="{Binding AssistantResponse}" Style="{StaticResource SecondaryText}" LineBreakMode="WordWrap" VerticalOptions="CenterAndExpand" />
+                </VerticalStackLayout>
+            </ScrollView>
+        </Frame>
+
+        <!-- Slider control (centrado) -->
+        <Grid Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,12,0,0">
+            <Grid WidthRequest="420" HeightRequest="120">
+                <Frame x:Name="SwipeSliderTrack"
+                       CornerRadius="40"
+                       HeightRequest="64"
+                       HorizontalOptions="Fill"
+                       VerticalOptions="Center"
+                       BackgroundColor="{DynamicResource CardBackground}"
+                       HasShadow="True"
+                       Padding="8">
+                    <Grid x:Name="TrackGrid">
+                        <!-- Hints más visibles -->
+                        <Label x:Name="LeftHint" Text="⏹️ Detener" HorizontalOptions="Start" VerticalOptions="Center"
+                               Margin="16,0,0,0" Opacity="0.0" TextColor="{DynamicResource PrimaryTextColor}" FontAttributes="Bold" FontSize="16"/>
+                        <Label x:Name="CenterHint" Text="Desliza desde la izquierda para hablar" HorizontalOptions="Center" VerticalOptions="Center"
+                               TextColor="{DynamicResource SectionTitleColor}" FontSize="15"/>
+                        <Label x:Name="RightHint" Text="✖️ Cancelar" HorizontalOptions="End" VerticalOptions="Center"
+                               Margin="0,0,16,0" Opacity="0.0" TextColor="{DynamicResource PrimaryTextColor}" FontAttributes="Bold" FontSize="16"/>
+
+                        <!-- Thumb: inicialmente centrado, lo pondremos al extremo izquierdo en code-behind -->
+                        <Frame x:Name="SwipeSliderThumb"
+                               WidthRequest="64" HeightRequest="64"
+                               CornerRadius="32"
+                               BackgroundColor="{DynamicResource AccentColor}"
+                               HasShadow="True"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center">
+                            <Label x:Name="ThumbLabel" Text="🎤" HorizontalOptions="Center" VerticalOptions="Center" FontSize="22" TextColor="White"/>
+                            <Frame.GestureRecognizers>
+                                <PanGestureRecognizer PanUpdated="OnThumbPanUpdated" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </Grid>
+                </Frame>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>
