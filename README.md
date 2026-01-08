@@ -1,7 +1,7 @@
-# 🧠 TaskNotes – Asistente con Interfaz Natural en .NET MAUI
+# 🧠 VoxMate – Asistente con Interfaz Natural en .NET MAUI
 
 ## 📌 Descripción del proyecto
-**TaskNotes** es una aplicación multiplataforma desarrollada en **.NET MAUI (.NET 10)** que integra una **interfaz natural basada en voz**.  
+**VoxMate** es una aplicación multiplataforma desarrollada en **.NET MAUI (.NET 10)** que integra una **interfaz natural basada en voz**.  
 La aplicación permite interactuar con un asistente conversacional capaz de reconocer comandos hablados, responder mediante síntesis de voz y realizar distintas tareas como cálculos, conversiones, generación de números aleatorios y respuestas dinámicas.
 
 El objetivo del proyecto es aplicar los conceptos de **Interfaces Naturales** vistos en clase, combinándolos con una interfaz cuidada y navegación básica.
